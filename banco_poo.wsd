@@ -1,0 +1,68 @@
+@startuml
+
+
+skinparam roundcorner 10
+
+title Diagrama de Classes do BackgroundColor
+
+class Pessoa {
+    nome: String
+    endereco: String
+
+    construtor(nome, endereco)
+}
+
+class PessoaFisica {
+    -cpf: String
+    -data_nascimento: Date
+
+    construtor(pessoa, cpf, data_nascimento)
+    valida_cpf(cpf)
+}
+
+class PessoaJuridica {
+    -cnpj: String
+
+    valida_cnpj(cnpj)
+}
+
+class Funcionario {
+    -cargo: String
+    -matricula: Integer
+    -senha: String
+
+    construtor(cargo, matricula, senha)
+    acessar_sistema(senha)
+}
+
+class Agencia {
+    -numero: String
+
+    construtor(numero)
+}
+
+class Conta {
+    -numero: String
+    -agencia: Agencia
+    -cliente: Pessoa
+    -saldo: Double
+
+    construtor(numero, agencia, cliente, saldo)
+    sacar(valor)
+    depositar(valor)
+}
+
+note left of Conta
+    Uma conta contem obrigatoriamente um cliente e uma agencia.
+end note
+
+
+
+
+Pessoa <|-- PessoaFisica
+Pessoa <|-- PessoaJuridica
+PessoaFisica <|-- Funcionario
+Pessoa *-- Conta
+Agencia *-- Conta
+
+@enduml
