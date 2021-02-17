@@ -23,6 +23,7 @@ class PessoaFisica {
 class PessoaJuridica {
     -cnpj: String
 
+    construtor(razao_social, cnpj)
     valida_cnpj(cnpj)
 }
 
@@ -30,9 +31,19 @@ class Funcionario {
     -cargo: String
     -matricula: Integer
     -senha: String
+    -salario: Double
 
     construtor(cargo, matricula, senha)
     acessar_sistema(senha)
+    calcular_gratificacao()
+}
+
+
+class Gerente {
+    -qtd_funcionarios: Integer
+
+    construtor(qtd_funcionarios)
+    calcular_gratificacao(salario)
 }
 
 class Agencia {
@@ -61,7 +72,8 @@ end note
 
 Pessoa <|-- PessoaFisica
 Pessoa <|-- PessoaJuridica
-PessoaFisica <|-- Funcionario
+PessoaFisica <|-- Funcionario 
+Funcionario <|-- Gerente
 Pessoa *-- Conta
 Agencia *-- Conta
 
